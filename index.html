@@ -1,66 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Agentic Talent Fast Screening — Methodology at a Glance</title>
 <style>
-  :root {
-    --bg0:#070b1f; --bg1:#0d1330;
-    --ink:#eef1fb; --muted:#9aa2c4; --muted-2:#646d92;
-    --card:rgba(255,255,255,.04); --brd:rgba(255,255,255,.09);
-    --cyan:#22d3ee; --indigo:#6366f1; --violet:#a855f7;
+  /* ---------- THEME TOKENS ---------- */
+  :root[data-theme="dark"] {
+    --ink:#eef1fb; --ink-soft:#dfe4f5; --muted:#9aa2c4; --muted-2:#646d92;
+    --card:rgba(255,255,255,.045); --panel:rgba(255,255,255,.03); --brd:rgba(255,255,255,.09);
+    --brand:#22d3ee;
     --grad:linear-gradient(135deg,#22d3ee 0%,#6366f1 52%,#a855f7 100%);
     --soft:linear-gradient(135deg,rgba(34,211,238,.16),rgba(168,85,247,.16));
-    --good:#34d399; --ok:#f59e0b; --warn:#fb923c; --bad:#f43f5e;
+    --good:#34d399; --strong:#22d3ee; --ok:#f59e0b; --warn:#fb923c; --bad:#f43f5e;
     --shadow:0 18px 50px rgba(0,0,0,.5);
-    --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --grid:rgba(255,255,255,.022);
+    --pill-ink:#070b1f; --bar-track:rgba(255,255,255,.07);
+    --gate-bg:rgba(244,63,94,.10); --gate-brd:rgba(244,63,94,.36); --gate-text:#fecdd3; --gate-strong:#fff;
+    --bg-base:linear-gradient(160deg,#070b1f,#0d1330);
+    --bg-tint1:rgba(34,211,238,.12); --bg-tint2:rgba(168,85,247,.14);
   }
+  :root[data-theme="light"] {
+    --ink:#16205a; --ink-soft:#28366f; --muted:#6b7494; --muted-2:#9aa2bf;
+    --card:#ffffff; --panel:#f6f8fd; --brd:#e4e9f5;
+    --brand:#2d4bd6;
+    --grad:linear-gradient(135deg,#5b8def 0%,#2d4bd6 55%,#21449c 100%);
+    --soft:linear-gradient(135deg,rgba(91,141,239,.14),rgba(33,68,156,.12));
+    --good:#15915f; --strong:#2d4bd6; --ok:#d9930b; --warn:#e2680f; --bad:#dc2b45;
+    --shadow:0 12px 34px rgba(20,32,90,.08);
+    --grid:rgba(20,32,90,.035);
+    --pill-ink:#ffffff; --bar-track:#e9edf7;
+    --gate-bg:rgba(220,43,69,.07); --gate-brd:rgba(220,43,69,.28); --gate-text:#a4172f; --gate-strong:#dc2b45;
+    --bg-base:#ffffff;
+    --bg-tint1:rgba(91,141,239,.12); --bg-tint2:rgba(45,75,214,.08);
+  }
+  :root { --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+
   * { box-sizing:border-box; margin:0; padding:0; }
   html,body { height:100%; }
   body {
     font-family:var(--font); color:var(--ink);
     background:
-      radial-gradient(1100px 700px at 8% -12%, rgba(34,211,238,.12), transparent 60%),
-      radial-gradient(1000px 650px at 112% 118%, rgba(168,85,247,.14), transparent 55%),
-      linear-gradient(160deg,var(--bg0),var(--bg1));
+      radial-gradient(1100px 700px at 8% -12%, var(--bg-tint1), transparent 60%),
+      radial-gradient(1000px 650px at 112% 118%, var(--bg-tint2), transparent 55%),
+      var(--bg-base);
+    background-attachment:fixed;
     -webkit-font-smoothing:antialiased;
     min-height:100vh; display:flex; flex-direction:column;
+    transition:color .3s ease, background-color .3s ease;
   }
   body::before {
     content:""; position:fixed; inset:0; z-index:0;
     background-image:
-      linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+      linear-gradient(var(--grid) 1px,transparent 1px),
+      linear-gradient(90deg,var(--grid) 1px,transparent 1px);
     background-size:44px 44px;
     mask-image:radial-gradient(circle at 50% 35%, black, transparent 88%);
     pointer-events:none;
   }
   .page {
     position:relative; z-index:1; flex:1;
-    padding:clamp(20px,3.2vh,40px) clamp(24px,4vw,68px);
+    padding:clamp(20px,3.2vh,40px) clamp(24px,4vw,68px) clamp(16px,2.4vh,30px);
     display:flex; flex-direction:column; gap:clamp(14px,2vh,22px);
     max-width:1680px; margin:0 auto; width:100%;
   }
 
+  /* theme toggle */
+  .toggle {
+    position:fixed; top:18px; right:22px; z-index:10;
+    display:flex; align-items:center; gap:8px; padding:9px 14px; border-radius:999px;
+    background:var(--card); border:1px solid var(--brd); color:var(--ink);
+    font:inherit; font-size:12.5px; font-weight:700; letter-spacing:.04em; cursor:pointer;
+    box-shadow:var(--shadow); transition:border-color .2s ease, background .3s ease;
+  }
+  .toggle:hover { border-color:var(--brand); }
+  .toggle .ic { font-size:15px; line-height:1; }
+
   /* header */
-  .head { display:flex; justify-content:space-between; align-items:flex-end; gap:30px; flex-wrap:wrap; }
-  .eyebrow { font-size:12px; letter-spacing:.32em; text-transform:uppercase; color:var(--cyan); font-weight:700; display:flex; align-items:center; gap:11px; margin-bottom:10px; }
+  .head { display:flex; justify-content:space-between; align-items:flex-end; gap:30px; flex-wrap:wrap; padding-right:120px; }
+  .eyebrow { font-size:12px; letter-spacing:.32em; text-transform:uppercase; color:var(--brand); font-weight:700; display:flex; align-items:center; gap:11px; margin-bottom:10px; }
   .eyebrow::before { content:""; width:32px; height:2px; background:var(--grad); border-radius:2px; }
   h1 { font-size:clamp(26px,3.3vw,46px); line-height:1.02; font-weight:800; letter-spacing:-.02em; }
   .grad { background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .thesis { color:var(--muted); font-size:clamp(13px,1.05vw,16px); max-width:46ch; line-height:1.5; text-align:right; }
-  .thesis b { color:var(--ink); font-weight:600; }
+  .thesis b { color:var(--ink-soft); font-weight:600; }
 
   /* pipeline */
   .flow { display:grid; grid-template-columns:1fr 26px 1.28fr 26px 1.28fr 26px 1fr; gap:0; align-items:stretch; flex:1; min-height:0; }
-  .arrow { display:grid; place-items:center; color:var(--violet); font-size:24px; font-weight:800; }
+  .arrow { display:grid; place-items:center; color:var(--brand); font-size:24px; font-weight:800; }
   .stage {
     background:var(--card); border:1px solid var(--brd); border-radius:18px;
     padding:clamp(16px,1.7vw,24px); box-shadow:var(--shadow);
     display:flex; flex-direction:column; position:relative; overflow:hidden;
   }
-  .stage::before { content:""; position:absolute; inset:0 0 auto 0; height:3px; background:var(--grad); opacity:.9; }
+  .stage::before { content:""; position:absolute; inset:0 0 auto 0; height:3px; background:var(--grad); opacity:.95; }
   .st-no { font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted-2); font-weight:800; }
   .st-title { font-size:clamp(16px,1.55vw,22px); font-weight:800; letter-spacing:-.01em; margin-top:3px; display:flex; align-items:center; gap:9px; }
   .st-title .em { font-size:1.15em; }
@@ -68,7 +101,7 @@
 
   /* inputs */
   .inputs { display:flex; flex-direction:column; gap:10px; margin-top:14px; flex:1; }
-  .inp { display:flex; gap:12px; align-items:center; padding:11px 12px; border-radius:12px; background:rgba(255,255,255,.03); border:1px solid var(--brd); }
+  .inp { display:flex; gap:12px; align-items:center; padding:11px 12px; border-radius:12px; background:var(--panel); border:1px solid var(--brd); }
   .inp .i { width:38px; height:38px; border-radius:10px; display:grid; place-items:center; font-size:19px; background:var(--soft); border:1px solid var(--brd); flex:0 0 auto; }
   .inp .tt { font-weight:700; font-size:14.5px; }
   .inp .dd { color:var(--muted); font-size:11.5px; margin-top:1px; line-height:1.3; }
@@ -78,12 +111,12 @@
   .dims { display:flex; flex-direction:column; gap:9px; margin-top:14px; flex:1; }
   .dim { display:grid; grid-template-columns:1fr auto; gap:6px 10px; align-items:center; }
   .dim .lab { font-weight:700; font-size:13.5px; }
-  .dim .w { font-size:11px; font-weight:800; color:var(--bg0); background:var(--grad); padding:3px 9px; border-radius:7px; letter-spacing:.02em; }
-  .bar { grid-column:1/-1; height:7px; border-radius:6px; background:rgba(255,255,255,.07); overflow:hidden; }
+  .dim .w { font-size:11px; font-weight:800; color:var(--pill-ink); background:var(--grad); padding:3px 9px; border-radius:7px; letter-spacing:.02em; }
+  .bar { grid-column:1/-1; height:7px; border-radius:6px; background:var(--bar-track); overflow:hidden; }
   .bar i { display:block; height:100%; background:var(--grad); border-radius:6px; }
   .dim .note { grid-column:1/-1; color:var(--muted-2); font-size:10.5px; margin-top:-2px; }
-  .gate { margin-top:13px; padding:10px 13px; border-radius:11px; display:flex; gap:10px; align-items:center; background:rgba(244,63,94,.1); border:1px solid rgba(244,63,94,.36); font-size:12.5px; color:#fecdd3; line-height:1.35; }
-  .gate b { color:#fff; }
+  .gate { margin-top:13px; padding:10px 13px; border-radius:11px; display:flex; gap:10px; align-items:center; background:var(--gate-bg); border:1px solid var(--gate-brd); font-size:12.5px; color:var(--gate-text); line-height:1.35; }
+  .gate b { color:var(--gate-strong); }
 
   /* scoring engine */
   .formula {
@@ -94,7 +127,7 @@
   .formula .eq span { white-space:nowrap; }
   .formula small { color:var(--muted); display:block; margin-top:5px; font-size:10.5px; letter-spacing:.04em; }
   .tree { margin-top:12px; display:flex; flex-direction:column; gap:6px; flex:1; }
-  .branch { display:grid; grid-template-columns:1fr auto; align-items:center; gap:10px; padding:8px 12px; border-radius:10px; background:rgba(255,255,255,.03); border:1px solid var(--brd); border-left:4px solid var(--c); }
+  .branch { display:grid; grid-template-columns:1fr auto; align-items:center; gap:10px; padding:8px 12px; border-radius:10px; background:var(--panel); border:1px solid var(--brd); border-left:4px solid var(--c); }
   .branch .cond { font-size:12.5px; color:var(--muted); }
   .branch .cond b { color:var(--ink); font-weight:700; }
   .branch .res { font-size:13px; font-weight:800; color:var(--c); white-space:nowrap; }
@@ -103,33 +136,37 @@
   /* result */
   .scale-mini { display:flex; flex-direction:column; gap:7px; margin-top:14px; }
   .sm { display:flex; align-items:center; gap:11px; font-size:13px; }
-  .sm .n { width:26px; height:26px; border-radius:8px; display:grid; place-items:center; font-weight:800; font-size:14px; color:var(--bg0); background:var(--c); flex:0 0 auto; }
+  .sm .n { width:26px; height:26px; border-radius:8px; display:grid; place-items:center; font-weight:800; font-size:14px; color:var(--pill-ink); background:var(--c); flex:0 0 auto; }
   .sm .lab { font-weight:700; }
   .sm .ac { margin-left:auto; font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted-2); }
   .examples { margin-top:14px; display:flex; flex-direction:column; gap:9px; }
   .ex-h { font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted-2); font-weight:800; }
-  .ex { display:flex; align-items:center; gap:11px; padding:10px 12px; border-radius:11px; background:rgba(255,255,255,.03); border:1px solid var(--brd); }
+  .ex { display:flex; align-items:center; gap:11px; padding:10px 12px; border-radius:11px; background:var(--panel); border:1px solid var(--brd); }
   .ex .big { font-size:26px; font-weight:800; line-height:1; color:var(--c); flex:0 0 auto; width:28px; text-align:center; }
   .ex .role { font-size:12.5px; font-weight:700; }
   .ex .why { font-size:10.5px; color:var(--muted); margin-top:1px; line-height:1.3; }
 
   /* methodology strip */
   .method { display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:14px 18px; border-radius:14px; background:var(--card); border:1px solid var(--brd); box-shadow:var(--shadow); }
-  .method .mlbl { font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--cyan); font-weight:800; padding-right:6px; }
-  .chip { font-size:12px; color:var(--muted); padding:6px 12px; border-radius:999px; background:rgba(255,255,255,.04); border:1px solid var(--brd); display:flex; align-items:center; gap:7px; }
+  .method .mlbl { font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--brand); font-weight:800; padding-right:6px; }
+  .chip { font-size:12px; color:var(--muted); padding:6px 12px; border-radius:999px; background:var(--panel); border:1px solid var(--brd); display:flex; align-items:center; gap:7px; }
   .chip::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--grad); }
-  .chip b { color:var(--ink); font-weight:600; }
-
-  .brand { align-self:flex-end; margin:22px 22px 14px; z-index:5; font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted-2); font-weight:700; }
+  .chip b { color:var(--ink-soft); font-weight:600; }
 
   @media (max-width:1100px) {
     .flow { grid-template-columns:1fr; gap:12px; }
     .arrow { transform:rotate(90deg); height:24px; }
+    .head { padding-right:0; }
     .thesis { text-align:left; }
   }
 </style>
 </head>
 <body>
+
+  <button class="toggle" id="themeToggle" aria-label="Toggle dark / light mode">
+    <span class="ic" id="themeIcon">☀️</span><span id="themeLabel">Light mode</span>
+  </button>
+
   <div class="page">
 
     <!-- header -->
@@ -188,7 +225,7 @@
           <div class="branch" style="--c:var(--bad)"><span class="cond">Skill match <b>&lt; 80%</b> · missing required</span><span class="res">→ 1</span></div>
           <div class="branch" style="--c:var(--warn)"><span class="cond">Strength <b>&lt; 70</b></span><span class="res">→ 2</span></div>
           <div class="branch" style="--c:var(--ok)"><span class="cond">Strength <b>&lt; 80</b></span><span class="res">→ 3</span></div>
-          <div class="branch" style="--c:var(--cyan)"><span class="cond">Strength <b>&lt; 90</b></span><span class="res">→ 4</span></div>
+          <div class="branch" style="--c:var(--strong)"><span class="cond">Strength <b>&lt; 90</b></span><span class="res">→ 4</span></div>
           <div class="branch" style="--c:var(--good)"><span class="cond">Strength <b>≥ 90</b></span><span class="res">→ 5</span></div>
         </div>
         <div class="engine-note">AI reasons · the engine decides — no black-box scoring.</div>
@@ -203,14 +240,14 @@
         <div class="st-sub">One rating + plain-English rationale per candidate.</div>
         <div class="scale-mini">
           <div class="sm" style="--c:var(--good)"><span class="n">5</span><span class="lab">Exceptional</span><span class="ac">Fast-track</span></div>
-          <div class="sm" style="--c:var(--cyan)"><span class="n">4</span><span class="lab">Strong</span><span class="ac">Advance</span></div>
+          <div class="sm" style="--c:var(--strong)"><span class="n">4</span><span class="lab">Strong</span><span class="ac">Advance</span></div>
           <div class="sm" style="--c:var(--ok)"><span class="n">3</span><span class="lab">OK</span><span class="ac">Review</span></div>
           <div class="sm" style="--c:var(--warn)"><span class="n">2</span><span class="lab">Weak</span><span class="ac">Caution</span></div>
           <div class="sm" style="--c:var(--bad)"><span class="n">1</span><span class="lab">Insufficient</span><span class="ac">Pass</span></div>
         </div>
         <div class="examples">
           <div class="ex-h">In practice</div>
-          <div class="ex" style="--c:var(--cyan)"><span class="big">4</span><div><div class="role">Tech Support — Candidate A</div><div class="why">8 yrs, all skills matched, on-target Q&amp;A</div></div></div>
+          <div class="ex" style="--c:var(--strong)"><span class="big">4</span><div><div class="role">Tech Support — Candidate A</div><div class="why">8 yrs, all skills matched, on-target Q&amp;A</div></div></div>
           <div class="ex" style="--c:var(--warn)"><span class="big">2</span><div><div class="role">Project Manager — Candidate B</div><div class="why">Junior, shallow depth, incomplete degree</div></div></div>
         </div>
       </div>
@@ -230,5 +267,27 @@
     </div>
 
   </div>
+
+  <script>
+    const root = document.documentElement;
+    const icon = document.getElementById('themeIcon');
+    const label = document.getElementById('themeLabel');
+
+    function apply(theme) {
+      root.setAttribute('data-theme', theme);
+      const goingTo = theme === 'dark' ? 'light' : 'dark';
+      icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      label.textContent = (goingTo === 'light' ? 'Light' : 'Dark') + ' mode';
+      try { localStorage.setItem('tfs-theme', theme); } catch (e) {}
+    }
+
+    let saved = 'dark';
+    try { saved = localStorage.getItem('tfs-theme') || 'dark'; } catch (e) {}
+    apply(saved);
+
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+  </script>
 </body>
 </html>
