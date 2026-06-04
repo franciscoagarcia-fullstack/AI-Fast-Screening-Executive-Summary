@@ -12,7 +12,7 @@
     --brand:#2d4bd6;
     --grad:linear-gradient(135deg,#5b8def 0%,#2d4bd6 55%,#21449c 100%);
     --soft:linear-gradient(135deg,rgba(91,141,239,.14),rgba(33,68,156,.12));
-    --good:#15915f; --strong:#2d4bd6; --ok:#d9930b; --warn:#e2680f; --bad:#dc2b45;
+    --good:#15915f; --strong:#56629c; --ok:#ab8a4a; --warn:#b07a52; --bad:#dc2b45;
     --shadow:0 12px 34px rgba(20,32,90,.08);
     --grid:rgba(20,32,90,.035);
     --pill-ink:#ffffff; --bar-track:#e9edf7;
@@ -44,21 +44,21 @@
     pointer-events:none;
   }
   .page {
-    position:relative; z-index:1; flex:1;
+    position:relative; z-index:1;
     padding:clamp(12px,1.8vh,22px) clamp(24px,4vw,68px) clamp(10px,1.4vh,18px);
     display:flex; flex-direction:column; gap:clamp(10px,1.4vh,16px);
     max-width:1680px; margin:0 auto; width:100%;
   }
 
   /* header */
-  .head { display:flex; justify-content:space-between; align-items:flex-end; gap:30px; flex-wrap:wrap; }
+  .head { display:flex; justify-content:space-between; align-items:flex-end; gap:30px; flex-wrap:wrap; margin-top:clamp(14px,3vh,32px); }
   .eyebrow { font-size:12px; letter-spacing:.32em; text-transform:uppercase; color:var(--brand); font-weight:700; display:flex; align-items:center; gap:11px; margin-bottom:10px; }
   .eyebrow::before { content:""; width:32px; height:2px; background:var(--grad); border-radius:2px; }
   h1 { font-size:clamp(24px,2.8vw,38px); line-height:1.02; font-weight:800; letter-spacing:-.02em; }
   .grad { background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
 
   /* pipeline */
-  .flow { display:grid; grid-template-columns:1fr 26px 1.28fr 26px 1.28fr 26px 1fr; gap:0; align-items:stretch; flex:1; min-height:0; }
+  .flow { display:grid; grid-template-columns:1fr 26px 1.28fr 26px 1.28fr 26px 1fr; gap:0; align-items:stretch; }
   .arrow { display:grid; place-items:center; color:var(--brand); font-size:24px; font-weight:800; }
   .stage {
     background:var(--card); border:1px solid var(--brd); border-radius:18px;
@@ -68,7 +68,6 @@
   .stage::before { content:""; position:absolute; inset:0 0 auto 0; height:3px; background:var(--grad); opacity:.95; }
   .st-no { font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted-2); font-weight:800; }
   .st-title { font-size:clamp(16px,1.55vw,22px); font-weight:800; letter-spacing:-.01em; margin-top:3px; display:flex; align-items:center; gap:9px; }
-  .st-title .em { font-size:1.15em; }
 
   /* inputs */
   .inputs { display:flex; flex-direction:column; gap:8px; margin-top:10px; flex:1; }
@@ -100,21 +99,20 @@
   .formula .eq span { white-space:nowrap; }
   .formula small { color:var(--muted); display:block; margin-top:5px; font-size:10.5px; letter-spacing:.04em; }
   .tree { margin-top:9px; display:flex; flex-direction:column; gap:5px; flex:1; }
-  .branch { display:grid; grid-template-columns:1fr auto; align-items:center; gap:10px; padding:6px 12px; border-radius:10px; background:var(--panel); border:1px solid var(--brd); border-left:4px solid var(--c); }
+  .branch { display:grid; grid-template-columns:1fr auto; align-items:center; gap:10px; padding:6px 12px; border-radius:10px; background:var(--panel); border:1px solid var(--brd); }
   .branch .cond { font-size:12.5px; color:var(--muted); }
   .branch .cond b { color:var(--ink); font-weight:700; }
-  .branch .res { font-size:13px; font-weight:800; color:var(--c); white-space:nowrap; }
+  .branch .res { font-size:13px; font-weight:800; color:var(--c, var(--ink)); white-space:nowrap; }
 
   /* result */
   .scale-mini { display:flex; flex-direction:column; gap:5px; margin-top:10px; }
   .sm { display:flex; align-items:center; gap:10px; font-size:12.5px; }
-  .sm .n { width:22px; height:22px; border-radius:7px; display:grid; place-items:center; font-weight:800; font-size:13px; color:var(--pill-ink); background:var(--c); flex:0 0 auto; }
-  .sm .lab { font-weight:700; }
-  .sm .ac { margin-left:auto; font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted-2); }
+  .sm .n { width:22px; height:22px; border-radius:7px; display:grid; place-items:center; font-weight:800; font-size:13px; color:var(--pill-ink); background:var(--c, var(--ink-soft)); flex:0 0 auto; }
+  .sm .lab { font-weight:700; font-size:14.5px; }
   .examples { margin-top:10px; display:flex; flex-direction:column; gap:6px; }
   .ex-h { font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted-2); font-weight:800; }
-  .ex { display:flex; align-items:center; gap:11px; padding:7px 12px; border-radius:11px; background:var(--panel); border:1px solid var(--brd); }
-  .ex .big { font-size:22px; font-weight:800; line-height:1; color:var(--c); flex:0 0 auto; width:26px; text-align:center; }
+  .ex { display:flex; align-items:center; gap:11px; padding:7px 12px; border-radius:11px; background:var(--c-soft, var(--panel)); border:1px solid var(--c-brd, var(--brd)); }
+  .ex .big { font-size:22px; font-weight:800; line-height:1; color:var(--c, var(--ink)); flex:0 0 auto; width:26px; text-align:center; }
   .ex .role { font-size:12.5px; font-weight:700; }
   .ex .why { font-size:10.5px; color:var(--muted); margin-top:1px; line-height:1.3; }
 
@@ -131,7 +129,6 @@
     <!-- header -->
     <div class="head">
       <div>
-        <div class="eyebrow">FullStack · Connect</div>
         <h1>Agentic Talent <span class="grad">Fast Screening</span></h1>
       </div>
     </div>
@@ -141,12 +138,13 @@
 
       <!-- STAGE 1 -->
       <div class="stage">
-        <div class="st-no">Stage 1 · Gather</div>
-        <div class="st-title"><span class="em">📥</span> The Evidence</div>
+        <div class="st-no">Stage 1</div>
+        <div class="st-title">Sources</div>
         <div class="inputs">
-          <div class="inp"><span class="i">📄</span><div><div class="tt">Resume</div><div class="dd">History, tenure, education, certifications</div></div></div>
-          <div class="inp"><span class="i">🧩</span><div><div class="tt">Skills</div><div class="dd">Declared skills vs. the role's required skills</div></div></div>
-          <div class="inp"><span class="i">💬</span><div><div class="tt">Application Q&amp;A</div><div class="dd">Work auth, location, experience, role fit</div></div></div>
+          <div class="inp"><span class="i">📄</span><div><div class="tt">Resume</div></div></div>
+          <div class="inp"><span class="i">🧩</span><div><div class="tt">Self Reported Skills</div></div></div>
+          <div class="inp"><span class="i">💬</span><div><div class="tt">Job Application Responses</div></div></div>
+          <div class="inp"><span class="i">📋</span><div><div class="tt">Job Posting Requirements</div></div></div>
         </div>
       </div>
 
@@ -154,33 +152,28 @@
 
       <!-- STAGE 2 -->
       <div class="stage">
-        <div class="st-no">Stage 2 · Reason</div>
-        <div class="st-title"><span class="em">🧠</span> AI Evaluation</div>
+        <div class="st-no">Stage 2</div>
+        <div class="st-title">AI Evaluation</div>
         <div class="dims">
           <div class="dim"><span class="lab">Skills Match</span><span class="w">weight 20%</span><div class="bar"><i style="width:50%"></i></div></div>
           <div class="dim"><span class="lab">Experience Relevance</span><span class="w">weight 30%</span><div class="bar"><i style="width:75%"></i></div></div>
-          <div class="dim"><span class="lab">Q&amp;A Alignment</span><span class="w">weight 40%</span><div class="bar"><i style="width:100%"></i></div></div>
-          <div class="dim"><span class="lab">Education &amp; Certs</span><span class="w">weight 10%</span><div class="bar"><i style="width:25%"></i></div></div>
+          <div class="dim"><span class="lab">Job Application Responses</span><span class="w">weight 40%</span><div class="bar"><i style="width:100%"></i></div></div>
+          <div class="dim"><span class="lab">Education &amp; Certificates</span><span class="w">weight 10%</span><div class="bar"><i style="width:25%"></i></div></div>
         </div>
-        <div class="ctx-note">🎯 <span><b>Evaluated against the job posting:</b> every dimension is scored against the specific requirements defined in the role's job posting — not a generic rubric.</span></div>
       </div>
 
       <div class="arrow">→</div>
 
       <!-- STAGE 3 -->
       <div class="stage">
-        <div class="st-no">Stage 3 · Compute</div>
-        <div class="st-title"><span class="em">⚙️</span> Scoring Engine</div>
-        <div class="formula">
-          <div class="eq"><span class="grad">Strength</span> = 0.20·Skills + 0.30·Exp + 0.40·Q&amp;A + 0.10·Edu</div>
-          <small>Same math, every candidate — fully reproducible</small>
-        </div>
+        <div class="st-no">Stage 3</div>
+        <div class="st-title">Candidate Scoring</div>
         <div class="tree">
           <div class="branch" style="--c:var(--bad)"><span class="cond">Skills match <b>&lt; 80%</b></span><span class="res">→ 1</span></div>
-          <div class="branch" style="--c:var(--warn)"><span class="cond">Strength <b>&lt; 70</b></span><span class="res">→ 2</span></div>
-          <div class="branch" style="--c:var(--ok)"><span class="cond">Strength <b>&lt; 80</b></span><span class="res">→ 3</span></div>
-          <div class="branch" style="--c:var(--strong)"><span class="cond">Strength <b>&lt; 90</b></span><span class="res">→ 4</span></div>
-          <div class="branch" style="--c:var(--good)"><span class="cond">Strength <b>≥ 90</b></span><span class="res">→ 5</span></div>
+          <div class="branch" style="--c:var(--bad)"><span class="cond">Combined Criteria Score <b>&lt; 70</b></span><span class="res">→ 2</span></div>
+          <div class="branch" style="--c:var(--good)"><span class="cond">Combined Criteria Score <b>&lt; 80</b></span><span class="res">→ 3</span></div>
+          <div class="branch" style="--c:var(--good)"><span class="cond">Combined Criteria Score <b>&lt; 90</b></span><span class="res">→ 4</span></div>
+          <div class="branch" style="--c:var(--good)"><span class="cond">Combined Criteria Score <b>≥ 90</b></span><span class="res">→ 5</span></div>
         </div>
       </div>
 
@@ -189,22 +182,18 @@
       <!-- STAGE 4 -->
       <div class="stage">
         <div class="st-no">Output</div>
-        <div class="st-title"><span class="em">⭐</span> Score 1–5</div>
+        <div class="st-title">Score Thresholds</div>
         <div class="scale-mini">
-          <div class="sm" style="--c:var(--good)"><span class="n">5</span><span class="lab">Exceptional</span><span class="ac">Fast-track</span></div>
-          <div class="sm" style="--c:var(--strong)"><span class="n">4</span><span class="lab">Strong</span><span class="ac">Advance</span></div>
-          <div class="sm" style="--c:var(--ok)"><span class="n">3</span><span class="lab">OK</span><span class="ac">Review</span></div>
-          <div class="sm" style="--c:var(--warn)"><span class="n">2</span><span class="lab">Weak</span><span class="ac">Caution</span></div>
-          <div class="sm" style="--c:var(--bad)"><span class="n">1</span><span class="lab">Insufficient</span><span class="ac">Pass</span></div>
+          <div class="sm" style="--c:var(--good)"><span class="n">5</span><span class="lab">Exceptional</span></div>
+          <div class="sm" style="--c:var(--good)"><span class="n">4</span><span class="lab">Strong</span></div>
+          <div class="sm" style="--c:var(--good)"><span class="n">3</span><span class="lab">OK</span></div>
+          <div class="sm" style="--c:var(--bad)"><span class="n">2</span><span class="lab">Weak</span></div>
+          <div class="sm" style="--c:var(--bad)"><span class="n">1</span><span class="lab">Insufficient</span></div>
         </div>
         <div class="examples">
           <div class="ex-h">In practice</div>
-          <div class="ex" style="--c:var(--strong)"><span class="big">4</span><div><div class="role">Tech Support — Candidate A</div><div class="why">8 yrs, all skills matched, on-target Q&amp;A</div></div></div>
-          <div class="ex" style="--c:var(--warn)"><span class="big">2</span><div><div class="role">Project Manager — Candidate B</div><div class="why">Junior, shallow depth, incomplete degree</div></div></div>
-        </div>
-        <div class="impact">
-          <b>Why it matters:</b> Recruiters get a clear, consistent signal of candidate quality — so they can focus their time on the strongest matches instead of manual resume review.
-          <div class="note">⚡ This process evaluates thousands of applications in minutes, dramatically accelerating decision making.</div>
+          <div class="ex" style="--c:var(--good); --c-soft:rgba(21,145,95,.08); --c-brd:rgba(21,145,95,.28)"><span class="big">4</span><div><div class="role">Tech Support Candidate</div><div class="why">8 yrs, all skills matched, on-target Q&amp;A</div></div></div>
+          <div class="ex" style="--c:var(--bad); --c-soft:rgba(220,43,69,.07); --c-brd:rgba(220,43,69,.25)"><span class="big">2</span><div><div class="role">Project Manager Candidate</div><div class="why">Junior, shallow depth, incomplete degree</div></div></div>
         </div>
       </div>
 
