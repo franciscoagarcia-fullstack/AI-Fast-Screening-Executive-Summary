@@ -1,25 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Agentic Talent Fast Screening — Methodology at a Glance</title>
 <style>
   /* ---------- THEME TOKENS ---------- */
-  :root[data-theme="dark"] {
-    --ink:#eef1fb; --ink-soft:#dfe4f5; --muted:#9aa2c4; --muted-2:#646d92;
-    --card:rgba(255,255,255,.045); --panel:rgba(255,255,255,.03); --brd:rgba(255,255,255,.09);
-    --brand:#22d3ee;
-    --grad:linear-gradient(135deg,#22d3ee 0%,#6366f1 52%,#a855f7 100%);
-    --soft:linear-gradient(135deg,rgba(34,211,238,.16),rgba(168,85,247,.16));
-    --good:#34d399; --strong:#22d3ee; --ok:#f59e0b; --warn:#fb923c; --bad:#f43f5e;
-    --shadow:0 18px 50px rgba(0,0,0,.5);
-    --grid:rgba(255,255,255,.022);
-    --pill-ink:#070b1f; --bar-track:rgba(255,255,255,.07);
-    --gate-bg:rgba(244,63,94,.10); --gate-brd:rgba(244,63,94,.36); --gate-text:#fecdd3; --gate-strong:#fff;
-    --bg-base:linear-gradient(160deg,#070b1f,#0d1330);
-    --bg-tint1:rgba(34,211,238,.12); --bg-tint2:rgba(168,85,247,.14);
-  }
   :root[data-theme="light"] {
     --ink:#16205a; --ink-soft:#28366f; --muted:#6b7494; --muted-2:#9aa2bf;
     --card:#ffffff; --panel:#f6f8fd; --brd:#e4e9f5;
@@ -65,25 +51,12 @@
     max-width:1680px; margin:0 auto; width:100%;
   }
 
-  /* theme toggle */
-  .toggle {
-    position:fixed; top:18px; right:22px; z-index:10;
-    display:flex; align-items:center; gap:8px; padding:9px 14px; border-radius:999px;
-    background:var(--card); border:1px solid var(--brd); color:var(--ink);
-    font:inherit; font-size:12.5px; font-weight:700; letter-spacing:.04em; cursor:pointer;
-    box-shadow:var(--shadow); transition:border-color .2s ease, background .3s ease;
-  }
-  .toggle:hover { border-color:var(--brand); }
-  .toggle .ic { font-size:15px; line-height:1; }
-
   /* header */
-  .head { display:flex; justify-content:space-between; align-items:flex-end; gap:30px; flex-wrap:wrap; padding-right:120px; }
+  .head { display:flex; justify-content:space-between; align-items:flex-end; gap:30px; flex-wrap:wrap; }
   .eyebrow { font-size:12px; letter-spacing:.32em; text-transform:uppercase; color:var(--brand); font-weight:700; display:flex; align-items:center; gap:11px; margin-bottom:10px; }
   .eyebrow::before { content:""; width:32px; height:2px; background:var(--grad); border-radius:2px; }
   h1 { font-size:clamp(26px,3.3vw,46px); line-height:1.02; font-weight:800; letter-spacing:-.02em; }
   .grad { background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .thesis { color:var(--muted); font-size:clamp(13px,1.05vw,16px); max-width:46ch; line-height:1.5; text-align:right; }
-  .thesis b { color:var(--ink-soft); font-weight:600; }
 
   /* pipeline */
   .flow { display:grid; grid-template-columns:1fr 26px 1.28fr 26px 1.28fr 26px 1fr; gap:0; align-items:stretch; flex:1; min-height:0; }
@@ -105,7 +78,6 @@
   .inp .i { width:38px; height:38px; border-radius:10px; display:grid; place-items:center; font-size:19px; background:var(--soft); border:1px solid var(--brd); flex:0 0 auto; }
   .inp .tt { font-weight:700; font-size:14.5px; }
   .inp .dd { color:var(--muted); font-size:11.5px; margin-top:1px; line-height:1.3; }
-  .foot-note { margin-top:12px; font-size:11px; color:var(--muted-2); font-style:italic; }
 
   /* AI dimensions */
   .dims { display:flex; flex-direction:column; gap:9px; margin-top:14px; flex:1; }
@@ -131,7 +103,6 @@
   .branch .cond { font-size:12.5px; color:var(--muted); }
   .branch .cond b { color:var(--ink); font-weight:700; }
   .branch .res { font-size:13px; font-weight:800; color:var(--c); white-space:nowrap; }
-  .engine-note { margin-top:11px; font-size:11px; color:var(--muted-2); font-style:italic; text-align:center; }
 
   /* result */
   .scale-mini { display:flex; flex-direction:column; gap:7px; margin-top:14px; }
@@ -146,36 +117,22 @@
   .ex .role { font-size:12.5px; font-weight:700; }
   .ex .why { font-size:10.5px; color:var(--muted); margin-top:1px; line-height:1.3; }
 
-  /* methodology strip */
-  .method { display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:14px 18px; border-radius:14px; background:var(--card); border:1px solid var(--brd); box-shadow:var(--shadow); }
-  .method .mlbl { font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--brand); font-weight:800; padding-right:6px; }
-  .chip { font-size:12px; color:var(--muted); padding:6px 12px; border-radius:999px; background:var(--panel); border:1px solid var(--brd); display:flex; align-items:center; gap:7px; }
-  .chip::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--grad); }
-  .chip b { color:var(--ink-soft); font-weight:600; }
-
   @media (max-width:1100px) {
     .flow { grid-template-columns:1fr; gap:12px; }
     .arrow { transform:rotate(90deg); height:24px; }
-    .head { padding-right:0; }
-    .thesis { text-align:left; }
   }
 </style>
 </head>
 <body>
-
-  <button class="toggle" id="themeToggle" aria-label="Toggle dark / light mode">
-    <span class="ic" id="themeIcon">☀️</span><span id="themeLabel">Light mode</span>
-  </button>
 
   <div class="page">
 
     <!-- header -->
     <div class="head">
       <div>
-        <div class="eyebrow">FullStack · Talent Operations · Methodology</div>
+        <div class="eyebrow">FullStack · Connect</div>
         <h1>Agentic Talent <span class="grad">Fast Screening</span></h1>
       </div>
-      <div class="thesis">A two-layer system: an <b>AI agent reasons</b> over every applicant against fixed guidelines, then a <b>deterministic engine</b> converts its findings into a single, auditable <b>1–5 score</b> — consistent at scale, in seconds.</div>
     </div>
 
     <!-- pipeline -->
@@ -191,7 +148,6 @@
           <div class="inp"><span class="i">🧩</span><div><div class="tt">Skills</div><div class="dd">Declared skills vs. the role's required skills</div></div></div>
           <div class="inp"><span class="i">💬</span><div><div class="tt">Application Q&amp;A</div><div class="dd">Work auth, location, experience, role fit</div></div></div>
         </div>
-        <div class="foot-note">Reasons only from real data — never fabricates.</div>
       </div>
 
       <div class="arrow">→</div>
@@ -228,7 +184,6 @@
           <div class="branch" style="--c:var(--strong)"><span class="cond">Strength <b>&lt; 90</b></span><span class="res">→ 4</span></div>
           <div class="branch" style="--c:var(--good)"><span class="cond">Strength <b>≥ 90</b></span><span class="res">→ 5</span></div>
         </div>
-        <div class="engine-note">AI reasons · the engine decides — no black-box scoring.</div>
       </div>
 
       <div class="arrow">→</div>
@@ -254,40 +209,7 @@
 
     </div>
 
-    <!-- methodology strip -->
-    <div class="method">
-      <span class="mlbl">Built for rigor</span>
-      <span class="chip"><b>Identical rubric</b> for every applicant</span>
-      <span class="chip"><b>Semantic</b> skill matching, not keywords</span>
-      <span class="chip"><b>Evidence-only</b> — no fabrication</span>
-      <span class="chip"><b>Hard gate</b> on required skills</span>
-      <span class="chip"><b>Deterministic</b> single pass</span>
-      <span class="chip"><b>Bias-guarded</b> — no protected traits</span>
-      <span class="chip"><b>Auditable</b> component scores</span>
-    </div>
-
   </div>
 
-  <script>
-    const root = document.documentElement;
-    const icon = document.getElementById('themeIcon');
-    const label = document.getElementById('themeLabel');
-
-    function apply(theme) {
-      root.setAttribute('data-theme', theme);
-      const goingTo = theme === 'dark' ? 'light' : 'dark';
-      icon.textContent = theme === 'dark' ? '☀️' : '🌙';
-      label.textContent = (goingTo === 'light' ? 'Light' : 'Dark') + ' mode';
-      try { localStorage.setItem('tfs-theme', theme); } catch (e) {}
-    }
-
-    let saved = 'dark';
-    try { saved = localStorage.getItem('tfs-theme') || 'dark'; } catch (e) {}
-    apply(saved);
-
-    document.getElementById('themeToggle').addEventListener('click', () => {
-      apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-    });
-  </script>
 </body>
 </html>
