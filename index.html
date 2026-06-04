@@ -141,9 +141,9 @@
         <div class="st-no">Stage 1</div>
         <div class="st-title">Sources</div>
         <div class="inputs">
+          <div class="inp"><span class="i">💬</span><div><div class="tt">Job Application Responses</div></div></div>
           <div class="inp"><span class="i">📄</span><div><div class="tt">Resume</div></div></div>
           <div class="inp"><span class="i">🧩</span><div><div class="tt">Self Reported Skills</div></div></div>
-          <div class="inp"><span class="i">💬</span><div><div class="tt">Job Application Responses</div></div></div>
           <div class="inp"><span class="i">📋</span><div><div class="tt">Job Posting Requirements</div></div></div>
         </div>
       </div>
@@ -153,7 +153,7 @@
       <!-- STAGE 2 -->
       <div class="stage">
         <div class="st-no">Stage 2</div>
-        <div class="st-title">AI Evaluation</div>
+        <div class="st-title">AI Evaluation Criteria</div>
         <div class="dims">
           <div class="dim"><span class="lab">Skills Match</span><span class="w">weight 20%</span><div class="bar"><i style="width:50%"></i></div></div>
           <div class="dim"><span class="lab">Experience Relevance</span><span class="w">weight 30%</span><div class="bar"><i style="width:75%"></i></div></div>
@@ -169,11 +169,11 @@
         <div class="st-no">Stage 3</div>
         <div class="st-title">Candidate Scoring</div>
         <div class="tree">
-          <div class="branch" style="--c:var(--bad)"><span class="cond">Skills match <b>&lt; 80%</b></span><span class="res">→ 1</span></div>
-          <div class="branch" style="--c:var(--bad)"><span class="cond">Combined Criteria Score <b>&lt; 70</b></span><span class="res">→ 2</span></div>
-          <div class="branch" style="--c:var(--good)"><span class="cond">Combined Criteria Score <b>&lt; 80</b></span><span class="res">→ 3</span></div>
-          <div class="branch" style="--c:var(--good)"><span class="cond">Combined Criteria Score <b>&lt; 90</b></span><span class="res">→ 4</span></div>
           <div class="branch" style="--c:var(--good)"><span class="cond">Combined Criteria Score <b>≥ 90</b></span><span class="res">→ 5</span></div>
+          <div class="branch" style="--c:var(--good)"><span class="cond">Combined Criteria Score <b>&lt; 90</b></span><span class="res">→ 4</span></div>
+          <div class="branch" style="--c:var(--good)"><span class="cond">Combined Criteria Score <b>&lt; 80</b></span><span class="res">→ 3</span></div>
+          <div class="branch" style="--c:var(--bad)"><span class="cond">Combined Criteria Score <b>&lt; 70</b></span><span class="res">→ 2</span></div>
+          <div class="branch" style="--c:var(--bad)"><span class="cond">Skills match <b>&lt; 80%</b></span><span class="res">→ 1</span></div>
         </div>
       </div>
 
