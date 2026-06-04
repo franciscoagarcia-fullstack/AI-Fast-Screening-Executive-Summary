@@ -69,7 +69,6 @@
   .st-no { font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted-2); font-weight:800; }
   .st-title { font-size:clamp(16px,1.55vw,22px); font-weight:800; letter-spacing:-.01em; margin-top:3px; display:flex; align-items:center; gap:9px; }
   .st-title .em { font-size:1.15em; }
-  .st-sub { color:var(--muted); font-size:12px; line-height:1.35; margin-top:5px; }
 
   /* inputs */
   .inputs { display:flex; flex-direction:column; gap:8px; margin-top:10px; flex:1; }
@@ -144,7 +143,6 @@
       <div class="stage">
         <div class="st-no">Stage 1 · Gather</div>
         <div class="st-title"><span class="em">📥</span> The Evidence</div>
-        <div class="st-sub">Authoritative inputs assembled per candidate &amp; role.</div>
         <div class="inputs">
           <div class="inp"><span class="i">📄</span><div><div class="tt">Resume</div><div class="dd">History, tenure, education, certifications</div></div></div>
           <div class="inp"><span class="i">🧩</span><div><div class="tt">Skills</div><div class="dd">Declared skills vs. the role's required skills</div></div></div>
@@ -158,7 +156,6 @@
       <div class="stage">
         <div class="st-no">Stage 2 · Reason</div>
         <div class="st-title"><span class="em">🧠</span> AI Evaluation</div>
-        <div class="st-sub">The agent scores four weighted dimensions, 0–100 each.</div>
         <div class="dims">
           <div class="dim"><span class="lab">Skills Match</span><span class="w">weight 20%</span><div class="bar"><i style="width:50%"></i></div></div>
           <div class="dim"><span class="lab">Experience Relevance</span><span class="w">weight 30%</span><div class="bar"><i style="width:75%"></i></div></div>
@@ -174,7 +171,6 @@
       <div class="stage">
         <div class="st-no">Stage 3 · Compute</div>
         <div class="st-title"><span class="em">⚙️</span> Scoring Engine</div>
-        <div class="st-sub">Component scores combine into a weighted strength score.</div>
         <div class="formula">
           <div class="eq"><span class="grad">Strength</span> = 0.20·Skills + 0.30·Exp + 0.40·Q&amp;A + 0.10·Edu</div>
           <small>Same math, every candidate — fully reproducible</small>
@@ -194,7 +190,6 @@
       <div class="stage">
         <div class="st-no">Output</div>
         <div class="st-title"><span class="em">⭐</span> Score 1–5</div>
-        <div class="st-sub">One rating + plain-English rationale per candidate.</div>
         <div class="scale-mini">
           <div class="sm" style="--c:var(--good)"><span class="n">5</span><span class="lab">Exceptional</span><span class="ac">Fast-track</span></div>
           <div class="sm" style="--c:var(--strong)"><span class="n">4</span><span class="lab">Strong</span><span class="ac">Advance</span></div>
